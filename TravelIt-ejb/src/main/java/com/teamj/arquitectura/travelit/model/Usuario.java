@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -28,7 +29,9 @@ import javax.persistence.Temporal;
 public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL
+    @SequenceGenerator(name = "U_SEQ1", sequenceName = "U_SEQ", allocationSize = 1)//SOLO EN ORACLE
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "U_SEQ1")//SOLO EN ORACLE
     @Column(name = "CODIGO_U")
     Integer id;
 
