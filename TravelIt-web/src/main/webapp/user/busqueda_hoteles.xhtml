@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/templates/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:pe="http://primefaces.org/ui/extensions">
+    <ui:define name="title">Búsqueda de hoteles</ui:define>
+    <ui:define name="content">
+        <h:form id="main_form">
+            <p:panel class="no_border" >
+                <div class="center_inline">
+                    <h1>Búsqueda de Hoteles</h1>
+                </div>
+                <p:spacer/>
+                <p:panelGrid columns="2" styleClass="center_block panel-grid-no-border" >
+                    <p:outputLabel for="ciudad" value="Ciudad:"/>
+                    <h:selectOneMenu id="ciudad" value="#{busquedaHotelesBean.ciudad}">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{busquedaHotelesBean.ciudades}" />
+                    </h:selectOneMenu>
+                    <p:outputLabel for="num_personas" value="Número de Personas:"/>
+                    <p:spinner id="num_personas" required="true" value="#{busquedaHotelesBean.numeroPersonas}" min="1" max="10"/>
+                    <p:outputLabel for="num_habitaciones" value="Número de Habitaciones:"/>
+                    <p:spinner id="num_habitaciones" required="true"  value="#{busquedaHotelesBean.numeroHabitaciones}" min="1" max="10"/>
+                    <p:outputLabel for="fecha_entrada" value="Fecha Entrada:" styleClass="negrita"/>
+                    <p:calendar id="fecha_entrada" required="true" value="#{busquedaHotelesBean.fechaEntrada}" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" showOn="button" />
+                    <p:outputLabel for="fecha_salida" value="Fecha Salida:" styleClass="negrita"/>
+                    <p:calendar id="fecha_salida" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" required="true" value="#{busquedaHotelesBean.fechaSalida}" showOn="button" />
+                    <p:outputLabel for="desayuno" value="Incluye Desayuno:" styleClass="negrita"/>
+                    <p:selectBooleanCheckbox id="desayuno" value="#{busquedaHotelesBean.conDesayuno}" />
+                </p:panelGrid>
+                <p:spacer/>
+                <p:panelGrid id="controllers" columns="2" class="center_block" styleClass="no_border center_block panel-grid-no-border">
+                    <p:commandButton value="Buscar"
+                                     update="@form"
+                                     actionListener="#{busquedaHotelesBean.buscar()}">
+                    </p:commandButton>                 
+                </p:panelGrid>
+                <p:spacer/>
+            </p:panel>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+

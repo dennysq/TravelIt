@@ -73,7 +73,7 @@ public class DefaultGenericDAOImple<T, ID extends Serializable> implements
     /**
      * Objeto que maneja las operaciones de persistencia.
      */
-    @PersistenceContext(name = "punit")
+    @PersistenceContext(name = "punit_travelit")
     private EntityManager em;
 
     /**

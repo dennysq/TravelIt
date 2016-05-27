@@ -49,9 +49,11 @@ public class HistoricoReserva implements Serializable {
     private String nombreEmpresa;
     
     @Column(name = "FECHA_INICIO_H")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fechaInicio;
     
     @Column(name = "FECHA_FIN_H")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fechaFin;
     
     @Column(name = "COSTO_TOTAL_H")
