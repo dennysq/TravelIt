@@ -70,10 +70,8 @@ public class UsuarioServicio {
         try {
             Usuario userToUpdate = this.usuarioDAO.findById(u.getId(), false);
             if (userToUpdate != null) {
-
                 userToUpdate.setActivo(u.getActivo());
                 userToUpdate.setNombre(u.getNombre());
-
                 //el passoword no voy a tomar en cuenta
                 userToUpdate.setEmail(u.getEmail());
                 this.usuarioDAO.update(userToUpdate);

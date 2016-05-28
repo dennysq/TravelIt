@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.integracionhotel.arquitectura.teamj.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.integracionhotel.arquitectura.teamj.com/">
+
+<xs:element name="consulta" type="tns:consulta"/>
+
+<xs:element name="consultaResponse" type="tns:consultaResponse"/>
+
+<xs:complexType name="consulta">
+<xs:sequence>
+<xs:element name="parametrosBusqueda" type="tns:consultahotelesrequest2" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultahotelesrequest2">
+<xs:sequence>
+<xs:element name="ciudad" type="xs:string" minOccurs="0"/>
+<xs:element name="desayunoIncluido" type="xs:boolean"/>
+<xs:element name="fechaEntrada" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaSalida" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="numHabitaciones" type="xs:int" minOccurs="0"/>
+<xs:element name="totalPersonas" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:consultahotelesresponse2" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultahotelesresponse2">
+<xs:sequence>
+<xs:element name="codigoHotel" type="xs:int" minOccurs="0"/>
+<xs:element name="cotizacion" type="xs:decimal" minOccurs="0"/>
+<xs:element name="habitaciones" type="tns:habitacion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nombreHotel" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="habitacion">
+<xs:sequence>
+<xs:element name="codigo" type="xs:int" minOccurs="0"/>
+<xs:element name="precio" type="xs:decimal" minOccurs="0"/>
+<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

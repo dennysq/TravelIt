@@ -5,12 +5,14 @@
  */
 package com.teamj.arquitectura.travelit.web;
 
+import com.teamj.arquitectura.travelit.services.HotelesServicio;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -22,6 +24,8 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 public class BusquedaHotelesBean {
 
+    @EJB
+    HotelesServicio hotelesServicio;
     private Integer numeroPersonas;
     private Integer numeroHabitaciones;
     private Date fechaEntrada;
@@ -38,10 +42,10 @@ public class BusquedaHotelesBean {
         numeroHabitaciones = 1;
         numeroPersonas = 1;
         fechaEntrada = new Date();
-        
-        
+
     }
-   public String todayDate() {
+
+    public String todayDate() {
         return new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
     }
 
@@ -102,7 +106,7 @@ public class BusquedaHotelesBean {
     }
 
     public void buscar() {
-
+        hotelesServicio.consultar(fechaEntrada, fechaSalida, numeroPersonas, numeroHabitaciones, ciudad, true);
     }
 
 }

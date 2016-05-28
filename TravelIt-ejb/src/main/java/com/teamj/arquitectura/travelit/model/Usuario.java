@@ -41,26 +41,37 @@ public class Usuario implements Serializable {
     @Column(name = "CLAVE_U")
     String clave;
 
+    @Column(name = "IDENTIFICACION_U")
+    String identificacion;
+
     @Column(name = "CREADO_U")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date created;
-    
+
     @Column(name = "EMAIL_U")
     String email;
 
     @Column(name = "ACTIVO_U")
     Boolean activo;
- 
+
     @OneToMany(mappedBy = "usuario", targetEntity = HistoricoReserva.class,
             fetch = FetchType.EAGER)
     List<HistoricoReserva> reservas;
- 
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
     }
 
     public String getNombre() {
@@ -110,7 +121,6 @@ public class Usuario implements Serializable {
     public void setReservas(List<HistoricoReserva> reservas) {
         this.reservas = reservas;
     }
-    
 
     public Usuario(Integer id, String nombre, String clave, Date created, String email, Boolean activo) {
         this.id = id;
@@ -148,9 +158,6 @@ public class Usuario implements Serializable {
         }
         return true;
     }
-
-
-    
 
     @Override
     public String toString() {
