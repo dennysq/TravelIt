@@ -2,4 +2,7 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://192.168.100.19:29149/IntegracionHotel-web/IntegracionHotelWS?wsdl" uri="wsdl/192.168.100.19_29149/IntegracionHotel-web/IntegracionHotelWS.wsdl"/>
     <system systemId="http://192.168.100.19:29149/IntegracionHotel-web/IntegracionHotelWS?xsd=1" uri="wsdl/192.168.100.19_29149/IntegracionHotel-web/IntegracionHotelWS.xsd_1.xsd"/>
+    <system systemId="http://192.168.100.18:50501/Service.asmx?WSDL" uri="wsdl/192.168.100.18_50501/Service.asmx.wsdl"/>
+    <system systemId="http://localhost:8082/IntegracionHotel-web/IntegracionHotelWS?wsdl" uri="wsdl/localhost_8082/IntegracionHotel-web/IntegracionHotelWS.wsdl"/>
+    <system systemId="http://localhost:8082/IntegracionHotel-web/IntegracionHotelWS?xsd=1" uri="wsdl/localhost_8082/IntegracionHotel-web/IntegracionHotelWS.xsd_1.xsd"/>
 </catalog>

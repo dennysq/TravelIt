@@ -15,29 +15,45 @@
                     <h1>Búsqueda de Hoteles</h1>
                 </div>
                 <p:spacer/>
-                <p:panelGrid columns="2" styleClass="center_block panel-grid-no-border" >
-                    <p:outputLabel for="ciudad" value="Ciudad:"/>
-                    <h:selectOneMenu id="ciudad" value="#{busquedaHotelesBean.ciudad}">
-                        <f:selectItem itemLabel="Select One" itemValue="" />
-                        <f:selectItems value="#{busquedaHotelesBean.ciudades}" />
-                    </h:selectOneMenu>
-                    <p:outputLabel for="num_personas" value="Número de Personas:"/>
-                    <p:spinner id="num_personas" required="true" value="#{busquedaHotelesBean.numeroPersonas}" min="1" max="10"/>
-                    <p:outputLabel for="num_habitaciones" value="Número de Habitaciones:"/>
-                    <p:spinner id="num_habitaciones" required="true"  value="#{busquedaHotelesBean.numeroHabitaciones}" min="1" max="10"/>
-                    <p:outputLabel for="fecha_entrada" value="Fecha Entrada:" styleClass="negrita"/>
-                    <p:calendar id="fecha_entrada" required="true" value="#{busquedaHotelesBean.fechaEntrada}" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" showOn="button" />
-                    <p:outputLabel for="fecha_salida" value="Fecha Salida:" styleClass="negrita"/>
-                    <p:calendar id="fecha_salida" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" required="true" value="#{busquedaHotelesBean.fechaSalida}" showOn="button" />
-                    <p:outputLabel for="desayuno" value="Incluye Desayuno:" styleClass="negrita"/>
-                    <p:selectBooleanCheckbox id="desayuno" value="#{busquedaHotelesBean.conDesayuno}" />
-                </p:panelGrid>
-                <p:spacer/>
-                <p:panelGrid id="controllers" columns="2" class="center_block" styleClass="no_border center_block panel-grid-no-border">
-                    <p:commandButton value="Buscar"
-                                     update="@form"
-                                     actionListener="#{busquedaHotelesBean.buscar()}">
-                    </p:commandButton>                 
+                <p:panelGrid columns="2" styleClass="panel-grid-no-border"  >
+                    <p:panelGrid columns="2" styleClass="panel-grid-no-border" style="width: 500px;" >
+                        <p:outputLabel for="ciudad" value="Ciudad:"/>
+                        <h:selectOneMenu id="ciudad" value="#{busquedaHotelesBean.ciudad}" required="true" style="width: 100%;" hideNoSelectionOption="true">
+                           <f:selectItem itemLabel="--Seleccione--" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{busquedaHotelesBean.ciudades}" />
+                        </h:selectOneMenu>
+                        <p:outputLabel for="num_personas" value="Número de Personas:"/>
+                        <p:spinner id="num_personas" required="true" value="#{busquedaHotelesBean.numeroPersonas}" min="1" max="10"/>
+                        <p:outputLabel for="fecha_entrada" value="Fecha Entrada:" styleClass="negrita"/>
+                        <p:calendar id="fecha_entrada" required="true" value="#{busquedaHotelesBean.fechaEntrada}" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" showOn="button" />
+                        <p:outputLabel for="fecha_salida" value="Fecha Salida:" styleClass="negrita"/>
+                        <p:calendar id="fecha_salida" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" required="true" value="#{busquedaHotelesBean.fechaSalida}" showOn="button" />
+                        <p:outputLabel for="desayuno" value="Incluye Desayuno:" styleClass="negrita"/>
+                        <p:selectBooleanCheckbox id="desayuno" value="#{busquedaHotelesBean.conDesayuno}" />
+                        <p:commandButton value="Buscar"
+                                         update="@form"
+                                         actionListener="#{busquedaHotelesBean.buscar()}">
+                        </p:commandButton>                 
+                    </p:panelGrid>
+                    <p:dataScroller  value="#{busquedaHotelesBean.result}" var="detalle" style="width: 600px;"  >
+                        <h:panelGrid columns="2" style="width: 100%;" >
+                            <h:panelGrid columns="2" cellpadding="5" >
+                                <h:outputText value="Nombre:" />
+                                <h:outputText value="#{detalle.nombreHotel}" style="font-weight: bold"/>
+                                <h:outputText value="Precio:" />
+                                <h:outputText value="#{detalle.cotizacion}" style="font-weight: bold">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
+                                <h:outputText value="Capacidad Máxima:" />
+                                <h:outputText value="#{busquedaHotelesBean.numeroPersonas}" style="font-weight: bold;color:#3366ff"/>                               
+                                <p:commandButton value="Reservar"
+                                                 update="@form"
+                                                 actionListener="#{busquedaHotelesBean.reservar(detalle)}">
+                                </p:commandButton>  
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <p:separator/>
+                    </p:dataScroller>
                 </p:panelGrid>
                 <p:spacer/>
             </p:panel>

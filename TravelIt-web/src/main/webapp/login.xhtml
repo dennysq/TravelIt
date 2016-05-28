@@ -59,6 +59,9 @@
                         <p:inputText id="nombre_signup" title="Solo caracteres alfanuméricos" maxlength="32" styleClass="login-form-input"  placeholder="Nombre de Usuario" value="#{loginBean.nombreUsuarioL}" >
                             <pe:keyFilter regEx="/[a-z0-9_]/i"/> 
                         </p:inputText>     
+                        <p:inputText id="identificacion" title="Solo caracteres numéricos"  styleClass="login-form-input"  placeholder="Identificacion (Cédula/RUC)" value="#{loginBean.identificacionUsuario}" maxlength="13">
+                            <pe:keyFilter regEx="/[a-z0-9_]/i"/> 
+                        </p:inputText>     
                         <p:inputText id="correo" maxlength="32" styleClass="login-form-input"  autocomplete="true" placeholder="Correo" value="#{loginBean.correoUsuario}" >
                             <pe:keyFilter regEx="/[a-z0-9_\.\-@]/i"/> 
                         </p:inputText>     

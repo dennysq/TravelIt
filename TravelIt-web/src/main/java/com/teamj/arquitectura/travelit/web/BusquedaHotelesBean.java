@@ -5,7 +5,9 @@
  */
 package com.teamj.arquitectura.travelit.web;
 
+import com.teamj.arquitectura.integracionhotel.ws.Consultahotelesresponse2;
 import com.teamj.arquitectura.travelit.services.HotelesServicio;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +24,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ViewScoped
 @ManagedBean
-public class BusquedaHotelesBean {
+public class BusquedaHotelesBean implements Serializable {
 
     @EJB
     HotelesServicio hotelesServicio;
@@ -33,6 +35,7 @@ public class BusquedaHotelesBean {
     private String ciudad;
     private Boolean conDesayuno;
     private List<String> ciudades;
+    java.util.List<com.teamj.arquitectura.integracionhotel.ws.Consultahotelesresponse2> result;
 
     @PostConstruct
     public void init() {
@@ -42,7 +45,7 @@ public class BusquedaHotelesBean {
         numeroHabitaciones = 1;
         numeroPersonas = 1;
         fechaEntrada = new Date();
-
+        conDesayuno = false;
     }
 
     public String todayDate() {
@@ -105,8 +108,19 @@ public class BusquedaHotelesBean {
         this.conDesayuno = conDesayuno;
     }
 
-    public void buscar() {
-        hotelesServicio.consultar(fechaEntrada, fechaSalida, numeroPersonas, numeroHabitaciones, ciudad, true);
+    public List<Consultahotelesresponse2> getResult() {
+        return result;
     }
 
+    public void setResult(List<Consultahotelesresponse2> result) {
+        this.result = result;
+    }
+
+    public void buscar() {
+        result = hotelesServicio.consultar(fechaEntrada, fechaSalida, numeroPersonas, ciudad, conDesayuno);
+    }
+
+    public void reservar(Consultahotelesresponse2 reserva) {
+    
+    }
 }

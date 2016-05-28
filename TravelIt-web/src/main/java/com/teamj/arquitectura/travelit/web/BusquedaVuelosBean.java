@@ -6,6 +6,7 @@
 package com.teamj.arquitectura.travelit.web;
 
 import com.teamj.arquitectura.travelit.services.AerolineasServicios;
+import java.io.Serializable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,12 +24,13 @@ import javax.faces.bean.ViewScoped;
  */
 @ViewScoped
 @ManagedBean
-public class BusquedaVuelosBean {
+public class BusquedaVuelosBean implements Serializable {
 
     @EJB
     AerolineasServicios aerolineasServicios;
+
     private Integer numeroAsientos;
-    
+
     private Date fechaRetorno;
     private Date fechaSalida;
     private String ciudadOrigen;
@@ -47,7 +49,7 @@ public class BusquedaVuelosBean {
         ciudadesDestino.add("Guayaquil");
         ciudadesDestino.add("Manta");
         ciudadesDestino.add("Quito");
-        
+
         numeroAsientos = 1;
         fechaSalida = new Date();
 
@@ -97,12 +99,6 @@ public class BusquedaVuelosBean {
         this.ciudadesDestino = ciudadesDestino;
     }
 
-
-
-  
-
-  
-
     public Date getFechaRetorno() {
         return fechaRetorno;
     }
@@ -119,7 +115,6 @@ public class BusquedaVuelosBean {
         this.fechaSalida = fechaSalida;
     }
 
-
     public Boolean getConDesayuno() {
         return conDesayuno;
     }
@@ -129,7 +124,7 @@ public class BusquedaVuelosBean {
     }
 
     public void buscar() {
-     //   hotelesServicio.consultar(fechaRetorno, fechaSalida, numeroAsientos, numeroHabitaciones, ciudad, true);
+        aerolineasServicios.consultar(fechaSalida, fechaRetorno, numeroAsientos, ciudadOrigen, ciudadDestino);
     }
 
 }

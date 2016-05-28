@@ -132,13 +132,31 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>192.168.100.19_29149/IntegracionHotel-web/IntegracionHotelWS.wsdl</wsdlFile>
+                                <wsdlFile>192.168.100.18_50501/Service.asmx.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName></packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
-                            <wsdlLocation>http://192.168.100.19:29149/IntegracionHotel-web/IntegracionHotelWS?wsdl</wsdlLocation>
+                            <wsdlLocation>http://192.168.100.18:50501/Service.asmx?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/Service.asmx.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-Service.asmx</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8082/IntegracionHotel-web/IntegracionHotelWS.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName></packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:8082/IntegracionHotel-web/IntegracionHotelWS?wsdl</wsdlLocation>
                             <staleFile>${project.build.directory}/jaxws/stale/IntegracionHotelWS.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-IntegracionHotelWS</id>

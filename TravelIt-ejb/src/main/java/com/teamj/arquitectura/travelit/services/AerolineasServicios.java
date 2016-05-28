@@ -5,6 +5,7 @@
  */
 package com.teamj.arquitectura.travelit.services;
 
+import java.util.Date;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -15,6 +16,8 @@ import javax.ejb.Stateless;
 @LocalBean
 @Stateless
 public class AerolineasServicios {
-    
-    
+
+    public void consultar(Date fechaSalida, Date fechaRetorno, Integer totalPersonas, String ciudadOrigen, String ciudadDestino) {
+   
+    }
 }

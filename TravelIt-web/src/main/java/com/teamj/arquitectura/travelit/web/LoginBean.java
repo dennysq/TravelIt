@@ -22,10 +22,10 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 @ManagedBean
 public class LoginBean implements Serializable {
-    
+
     private String correoUsuario;
     private String nombreCompletoUsuario;
-    
+
     private String nombreUsuarioL;
     private String nombreUsuario;
     private String claveUsuarioL;
@@ -33,98 +33,98 @@ public class LoginBean implements Serializable {
     private String identificacionUsuario;
     @EJB
     private UsuarioServicio usuarioServicio;
-    
+
     @ManagedProperty(value = "#{sessionBean}")
     private SessionBean sessionBean;
-    
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
-    
+
     public void setIdentificacionUsuario(String identificacionUsuario) {
         this.identificacionUsuario = identificacionUsuario;
     }
-    
+
     public String getIdentificacionUsuario() {
         return identificacionUsuario;
     }
-    
+
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
     public String getCorreoUsuario() {
         return correoUsuario;
     }
-    
+
     public String getNombreCompletoUsuario() {
         return nombreCompletoUsuario;
     }
-    
+
     public void setCorreoUsuario(String correoUsuario) {
         this.correoUsuario = correoUsuario;
     }
-    
+
     public void setNombreCompletoUsuario(String nombreCompletoUsuario) {
         this.nombreCompletoUsuario = nombreCompletoUsuario;
     }
-    
+
     public void setNombreUsuarioL(String nombreUsuarioL) {
         this.nombreUsuarioL = nombreUsuarioL;
     }
-    
+
     public void setClaveUsuarioL(String claveUsuarioL) {
         this.claveUsuarioL = claveUsuarioL;
     }
-    
+
     public String getClaveUsuarioL() {
         return claveUsuarioL;
     }
-    
+
     public String getNombreUsuarioL() {
         return nombreUsuarioL;
     }
-    
+
     public String getClaveUsuario() {
         return claveUsuario;
     }
-    
+
     public void setClaveUsuario(String claveUsuario) {
         this.claveUsuario = claveUsuario;
     }
-    
+
     public void setSessionBean(SessionBean sessionBean) {
         this.sessionBean = sessionBean;
     }
-    
+
     public SessionBean getSessionBean() {
         return sessionBean;
     }
-    
+
     @PostConstruct
     public void init() {
         // this.usuario = new Usuario();
     }
-    
+
     public String login() {
-        
+
         FacesMessage msg = null;
         if (nombreUsuario != null && !nombreUsuario.isEmpty() && claveUsuario != null && !claveUsuario.isEmpty()) {
-            
+
             Usuario u = new Usuario();
             u.setNombre(nombreUsuario);
-            
+
             Usuario loggedUser = usuarioServicio.login(u, claveUsuario);
             try {
                 if (loggedUser != null) {
-                    
+
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", loggedUser);
                     msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", nombreUsuario);
                     FacesContext.getCurrentInstance().addMessage(null, msg);
                     return this.sessionBean.login(loggedUser);
-                    
+
                 } else {
-                    
+
                     msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Error",
                             "Credenciales no válidas");
                     FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -134,41 +134,42 @@ public class LoginBean implements Serializable {
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Llene todos los campos para continuar");
             FacesContext.getCurrentInstance().addMessage(null, msg);
-            
+
         }
         return null;
     }
-    
+
     public void logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(false);
         session.invalidate();
-        
+
     }
-    
+
     public void beginSignUp() {
-        
+
         nombreCompletoUsuario = "";
         claveUsuarioL = "";
         correoUsuario = "";
         nombreUsuarioL = "";
     }
-    
+
     public void signUp() {
-        
+
         FacesContext context = FacesContext.getCurrentInstance();
         try {
             if (claveUsuarioL != null && !claveUsuarioL.isEmpty()
                     && correoUsuario != null && !correoUsuario.isEmpty()
-                    && nombreUsuarioL != null && !nombreUsuarioL.isEmpty()) {
+                    && nombreUsuarioL != null && !nombreUsuarioL.isEmpty()
+                    && identificacionUsuario != null && !identificacionUsuario.isEmpty()) {
                 Usuario u = new Usuario();
                 u.setEmail(correoUsuario);
                 u.setNombre(nombreUsuarioL);
                 u.setClave(claveUsuarioL);
-                u.setIdentificacion("hola");
-                
+                u.setIdentificacion(identificacionUsuario);
+
                 if (usuarioServicio.insertar(u)) {
-                    
+
                     context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "El registro se completó correctamente"));
                 } else {
                     context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registro", "El nombre de usuario ya existe"));
@@ -181,6 +182,6 @@ public class LoginBean implements Serializable {
         }
         this.nombreUsuario = this.nombreUsuarioL;
         RequestContext.getCurrentInstance().execute("PF('signup_dialog_var').hide()");
-        
+
     }
 }

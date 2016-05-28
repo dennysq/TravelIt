@@ -14,6 +14,7 @@ That way multiple projects can share the same settings (useful for formatting ru
 Any value defined here will override the pom.xml file value but is only applicable to the current project.
 -->
         <netbeans.hint.jdkPlatform>JDK_1.7</netbeans.hint.jdkPlatform>
-        <org-netbeans-modules-maven-jaxws._5f_C_5f_IntegracionHotelWS>http://192.168.100.19:29149/IntegracionHotel-web/IntegracionHotelWS?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_IntegracionHotelWS>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_IntegracionHotelWS>http://localhost:8082/IntegracionHotel-web/IntegracionHotelWS?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_IntegracionHotelWS>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_Service_2e_asmx>http://192.168.100.18:50501/Service.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_Service_2e_asmx>
     </properties>
 </project-shared-configuration>
