@@ -16,7 +16,7 @@
                 </div>
                 <p:spacer/>
                 <p:panelGrid columns="2" styleClass="panel-grid-no-border"  >
-                    <p:panelGrid columns="2" styleClass="panel-grid-no-border" style="width: 500px;" >
+                    <p:panelGrid columns="2" styleClass="panel-grid-no-border topAligned" style="width: 500px;" >
                         <p:outputLabel for="ciudad" value="Ciudad:"/>
                         <h:selectOneMenu id="ciudad" value="#{busquedaHotelesBean.ciudad}" required="true" style="width: 100%;" hideNoSelectionOption="true">
                            <f:selectItem itemLabel="--Seleccione--" itemValue="" noSelectionOption="true" />
@@ -27,7 +27,7 @@
                         <p:outputLabel for="fecha_entrada" value="Fecha Entrada:" styleClass="negrita"/>
                         <p:calendar id="fecha_entrada" required="true" value="#{busquedaHotelesBean.fechaEntrada}" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" showOn="button" />
                         <p:outputLabel for="fecha_salida" value="Fecha Salida:" styleClass="negrita"/>
-                        <p:calendar id="fecha_salida" pattern="dd/MM/yyyy" mindate="#{busquedaHotelesBean.todayDate()}" required="true" value="#{busquedaHotelesBean.fechaSalida}" showOn="button" />
+                        <p:calendar id="fecha_salida" pattern="dd/MM/yyyy"  required="true" value="#{busquedaHotelesBean.fechaSalida}" showOn="button" />
                         <p:outputLabel for="desayuno" value="Incluye Desayuno:" styleClass="negrita"/>
                         <p:selectBooleanCheckbox id="desayuno" value="#{busquedaHotelesBean.conDesayuno}" />
                         <p:commandButton value="Buscar"
@@ -38,8 +38,10 @@
                     <p:dataScroller  value="#{busquedaHotelesBean.result}" var="detalle" style="width: 600px;"  >
                         <h:panelGrid columns="2" style="width: 100%;" >
                             <h:panelGrid columns="2" cellpadding="5" >
-                                <h:outputText value="Nombre:" />
+                                <h:outputText value="Hotel:" />
                                 <h:outputText value="#{detalle.nombreHotel}" style="font-weight: bold"/>
+                                <h:outputText value="Tipo:" />
+                                <h:outputText value="#{detalle.tipoHabitacion}" style="font-weight: bold"/>
                                 <h:outputText value="Precio:" />
                                 <h:outputText value="#{detalle.cotizacion}" style="font-weight: bold">
                                     <f:convertNumber type="currency" currencySymbol="$"/>

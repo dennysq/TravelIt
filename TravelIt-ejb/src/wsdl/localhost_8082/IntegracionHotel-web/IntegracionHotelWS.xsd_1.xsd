@@ -4,6 +4,42 @@
 
 <xs:element name="consultaResponse" type="tns:consultaResponse"/>
 
+<xs:element name="reservar" type="tns:reservar"/>
+
+<xs:element name="reservarResponse" type="tns:reservarResponse"/>
+
+<xs:complexType name="reservar">
+<xs:sequence>
+<xs:element name="parametrosReserva" type="tns:reservaHotelPeticion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reservaHotelPeticion">
+<xs:sequence>
+<xs:element name="codigoHabitacion" type="xs:int" minOccurs="0"/>
+<xs:element name="codigoHotel" type="xs:int" minOccurs="0"/>
+<xs:element name="fechaEntrada" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaSalida" type="xs:string" minOccurs="0"/>
+<xs:element name="identificacion" type="xs:string" minOccurs="0"/>
+<xs:element name="nombreUsuario" type="xs:string" minOccurs="0"/>
+<xs:element name="precio" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reservarResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:reservaHotelRespuesta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reservaHotelRespuesta">
+<xs:sequence>
+<xs:element name="estado" type="xs:boolean"/>
+<xs:element name="mensajeError" type="xs:string" minOccurs="0"/>
+<xs:element name="numeroReserva" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="consulta">
 <xs:sequence>
 <xs:element name="parametrosBusqueda" type="tns:consultahotelesrequest2" minOccurs="0"/>
@@ -30,18 +66,12 @@
 
 <xs:complexType name="consultahotelesresponse2">
 <xs:sequence>
+<xs:element name="codigoHabitacion" type="xs:int" minOccurs="0"/>
 <xs:element name="codigoHotel" type="xs:int" minOccurs="0"/>
 <xs:element name="cotizacion" type="xs:decimal" minOccurs="0"/>
-<xs:element name="habitaciones" type="tns:habitacion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="nombreHotel" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="habitacion">
-<xs:sequence>
-<xs:element name="codigo" type="xs:int" minOccurs="0"/>
-<xs:element name="precio" type="xs:decimal" minOccurs="0"/>
-<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+<xs:element name="precioHabitacion" type="xs:decimal" minOccurs="0"/>
+<xs:element name="tipoHabitacion" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
