@@ -16,5 +16,6 @@ Any value defined here will override the pom.xml file value but is only applicab
         <netbeans.hint.jdkPlatform>JDK_1.7</netbeans.hint.jdkPlatform>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_IntegracionHotelWS>http://localhost:8082/IntegracionHotel-web/IntegracionHotelWS?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_IntegracionHotelWS>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_Service_2e_asmx>http://192.168.100.18:50501/Service.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_Service_2e_asmx>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_AlumnoWS>http://localhost:8082/conjuntaprimer-web/AlumnoWS?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_AlumnoWS>
     </properties>
 </project-shared-configuration>

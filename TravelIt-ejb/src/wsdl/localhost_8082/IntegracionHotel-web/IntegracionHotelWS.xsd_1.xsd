@@ -14,8 +14,8 @@
 <xs:sequence>
 <xs:element name="ciudad" type="xs:string" minOccurs="0"/>
 <xs:element name="desayunoIncluido" type="xs:boolean"/>
-<xs:element name="fechaEntrada" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="fechaSalida" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaEntrada" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaSalida" type="xs:string" minOccurs="0"/>
 <xs:element name="nombreUsuario" type="xs:string" minOccurs="0"/>
 <xs:element name="numHabitaciones" type="xs:int" minOccurs="0"/>
 <xs:element name="totalPersonas" type="xs:int" minOccurs="0"/>

@@ -16,6 +16,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -28,6 +29,10 @@ public class BusquedaHotelesBean implements Serializable {
 
     @EJB
     HotelesServicio hotelesServicio;
+
+    @ManagedProperty(value = "#{sessionBean}")
+    private SessionBean sessionBean;
+
     private Integer numeroPersonas;
     private Integer numeroHabitaciones;
     private Date fechaEntrada;
@@ -117,10 +122,18 @@ public class BusquedaHotelesBean implements Serializable {
     }
 
     public void buscar() {
-        result = hotelesServicio.consultar(fechaEntrada, fechaSalida, numeroPersonas, ciudad, conDesayuno);
+        result = hotelesServicio.consultar(sessionBean.getUser().getNombre(), new SimpleDateFormat("dd/MM/yyyy").format(fechaEntrada), new SimpleDateFormat("dd/MM/yyyy").format(fechaSalida), numeroPersonas, ciudad, conDesayuno);
+    }
+
+    public void setSessionBean(SessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }
+
+    public SessionBean getSessionBean() {
+        return sessionBean;
     }
 
     public void reservar(Consultahotelesresponse2 reserva) {
-    
+
     }
 }
