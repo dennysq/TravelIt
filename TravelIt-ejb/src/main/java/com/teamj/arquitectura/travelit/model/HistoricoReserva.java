@@ -41,27 +41,27 @@ public class HistoricoReserva implements Serializable {
 
     @Column(name = "NUM_RESERVA_H")
     private Integer numeroReserva;
-    
+
     @Column(name = "CODIGO_EMPRESA_H")
     private Integer idEmpresa;
-    
+
     @Column(name = "NOMBRE_EMPRESA_H")
     private String nombreEmpresa;
-    
+
     @Column(name = "FECHA_INICIO_H")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fechaInicio;
-    
+
     @Column(name = "FECHA_FIN_H")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fechaFin;
-    
+
     @Column(name = "COSTO_TOTAL_H")
     private BigDecimal costoTotal;
-    
+
     @Column(name = "CANTIDAD_ITEMS_H")
     private Integer cantidadItems;
-    
+
     @Column(name = "TIPO_RESERVA_H")
     private String tipoReserva;
 
@@ -70,9 +70,20 @@ public class HistoricoReserva implements Serializable {
     private Date creado;
 
     @ManyToOne
-    @JoinColumn(name = "CODIGO_U", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "CODIGO_U", nullable = false, insertable = false, updatable = false)
     private Usuario usuario;
-    
+
+    @Column(name = "CODIGO_U")
+    private Integer usuarioId;
+
+    public Integer getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Integer usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     /**
      * @return the id
      */
@@ -250,6 +261,5 @@ public class HistoricoReserva implements Serializable {
     public String toString() {
         return "HistoricoReserva{" + "id=" + id + ", numeroReserva=" + numeroReserva + ", idEmpresa=" + idEmpresa + ", nombreEmpresa=" + nombreEmpresa + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", costoTotal=" + costoTotal + ", cantidadItems=" + cantidadItems + ", tipoReserva=" + tipoReserva + ", creado=" + creado + '}';
     }
-    
 
 }

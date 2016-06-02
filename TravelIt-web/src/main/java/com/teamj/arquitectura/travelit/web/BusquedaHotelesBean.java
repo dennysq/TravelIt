@@ -15,9 +15,11 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -122,7 +124,12 @@ public class BusquedaHotelesBean implements Serializable {
     }
 
     public void buscar() {
-        result = hotelesServicio.consultar(sessionBean.getUser().getNombre(), new SimpleDateFormat("dd/MM/yyyy").format(fechaEntrada), new SimpleDateFormat("dd/MM/yyyy").format(fechaSalida), numeroPersonas, ciudad, conDesayuno);
+
+        result = hotelesServicio.consultar(sessionBean.getUser().getNombre(), new SimpleDateFormat("yyyy-MM-dd").format(fechaEntrada), new SimpleDateFormat("yyyy-MM-dd").format(fechaSalida), numeroPersonas, ciudad, conDesayuno);
+        if (result == null || result.isEmpty()) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Consulta","No se han encontrado resultados");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     public void setSessionBean(SessionBean sessionBean) {
@@ -134,6 +141,8 @@ public class BusquedaHotelesBean implements Serializable {
     }
 
     public void reservar(Consultahotelesresponse2 reserva) {
-
+        String msgString = hotelesServicio.reservar(reserva, numeroPersonas, conDesayuno, fechaEntrada, fechaSalida, sessionBean.getUser());
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Reserva", msgString);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

@@ -30,7 +30,6 @@ public class BusquedaVuelosBean implements Serializable {
     AerolineasServicios aerolineasServicios;
 
     private Integer numeroAsientos;
-
     private Date fechaRetorno;
     private Date fechaSalida;
     private String ciudadOrigen;
@@ -124,7 +123,7 @@ public class BusquedaVuelosBean implements Serializable {
     }
 
     public void buscar() {
-        aerolineasServicios.consultar(fechaSalida, fechaRetorno, numeroAsientos, ciudadOrigen, ciudadDestino);
+        aerolineasServicios.consultar(new SimpleDateFormat("yyyy-MM-dd").format(fechaSalida), new SimpleDateFormat("yyyy-MM-dd").format(fechaRetorno), numeroAsientos, ciudadOrigen, ciudadDestino);
     }
 
 }

@@ -18,10 +18,12 @@
 <xs:sequence>
 <xs:element name="codigoHabitacion" type="xs:int" minOccurs="0"/>
 <xs:element name="codigoHotel" type="xs:int" minOccurs="0"/>
+<xs:element name="conDesayuno" type="xs:boolean"/>
 <xs:element name="fechaEntrada" type="xs:string" minOccurs="0"/>
 <xs:element name="fechaSalida" type="xs:string" minOccurs="0"/>
 <xs:element name="identificacion" type="xs:string" minOccurs="0"/>
 <xs:element name="nombreUsuario" type="xs:string" minOccurs="0"/>
+<xs:element name="numPersonas" type="xs:int" minOccurs="0"/>
 <xs:element name="precio" type="xs:decimal" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
